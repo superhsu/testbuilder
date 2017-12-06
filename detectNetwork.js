@@ -14,6 +14,8 @@ var detectNetwork = function(cardNumber) {
 
 var prefix1 = cardNumber.substring(0,1);
 var prefix2 = cardNumber.substring(0,2);
+var prefix3 = cardNumber.substring(0,3);
+var prefix4 = cardNumber.substring(0,4);
 var cnl = cardNumber.length; 
 
 if ((prefix2 === '38' || prefix2 === '39') && cnl === 14) {
@@ -28,8 +30,21 @@ if (prefix1 === '4' && (cnl === 13 || cnl === 16 || cnl === 19)) {
 	return 'Visa'
 }
 
-if ((prefix2 === '51' || prefix2 === '52' || prefix2 === '53' || prefix2 === '54' || prefix2 === '55') && cnl === 16) {
+if ((parseInt(prefix2) > 50 && parseInt(prefix2) < 56) && cnl === 16) {
 	return 'MasterCard';
 }
+
+if ((prefix4 === '6011' || parseInt(prefix3) > 643 && parseInt(prefix3) < 650 || prefix2 === '65') && (cnl === 16 || cnl === 19)) {
+	return 'Discover';
+}
+
+if ((prefix4 === '5018' || prefix4 === '5020' || prefix4 === '5038' || prefix4 === '6304') && (cnl > 11 && cnl < 20)) {
+	return 'Maestro'
+}
+
+
+
+
+
 // Once you've read this, go ahead and try to implement this function, then return to the console.
 };
