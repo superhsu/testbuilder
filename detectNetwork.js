@@ -17,13 +17,19 @@ var prefix2 = cardNumber.substring(0,2);
 var cnl = cardNumber.length; 
 
 if ((prefix2 === '38' || prefix2 === '39') && cnl === 14) {
-	return 'Diner\'s club';
+	return 'Diner\'s Club';
 }
 
 if ((prefix2 === '34' || prefix2 === '37') && cnl === 15) {
 	return 'American Express';
 }
 
+if (prefix1 === '4' && (cnl === 13 || cnl === 16 || cnl === 19)) {
+	return 'Visa'
+}
+
+if ((prefix2 === '51' || prefix2 === '52' || prefix2 === '53' || prefix2 === '54' || prefix2 === '55') && cnl === 16) {
+	return 'MasterCard';
+}
 // Once you've read this, go ahead and try to implement this function, then return to the console.
 };
-
