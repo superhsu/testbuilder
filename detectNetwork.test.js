@@ -225,5 +225,92 @@ for (var l= 12; l <= 19; l++) {
    
 });
 
-describe('should support China UnionPay')
-describe('should support Switch')
+describe('should support China UnionPay', function() {
+
+  var expect = chai.expect;
+
+
+for (var prefix = 622126; prefix <= 622925; prefix++) { 
+  var card = prefix + '7890123456';
+  for (var l = 16; l <= 19; l++) {
+    (function(prefix, l, card){
+      it('has a prefix of ' + prefix + ' and a length of ' + l, function() {
+        expect(detectNetwork(card)).to.equal('China UnionPay');
+      });
+     })(prefix, l, card)
+    card = card + '1'; 
+  }
+}
+
+for (var prefix = 624; prefix <= 626; prefix++) {
+    var card = prefix + '4567890123456';
+  for (var l = 16; l <= 19; l++) {
+    (function (prefix, l, card) {
+      it('has a prefix of' + prefix + ' and a length of ' + l, function () {
+        expect(detectNetwork(card)).to.equal('China UnionPay');
+      });
+    })(prefix, l, card)
+    card = card + '1';
+  }
+}
+
+for (var prefix = 6282; prefix <= 6288; prefix++) {
+    var card = prefix + '456789012345';
+   for (var l = 16; l <= 19; l++) {
+    (function (prefix, l, card) {
+      it('has a prefix of ' + prefix + ' and a length of ' + l, function () {
+        expect(detectNetwork(card)).to.equal('China UnionPay');
+      });
+    })(prefix, l, card)
+    card = card + '1';
+  }
+}
+});
+
+describe('should support Switch', function() {
+var expect = chai.expect;
+var cardGroup = [4903, 4905, 4911, 4936, 564182, 633110, 6333, 6759];
+
+for (var i = 0; i < cardGroup.length; i++) {
+  var prefix = cardGroup[i].toString();
+  var actual = prefix; 
+  for (var j = 0; j < 16 - prefix.length; j++) {
+    actual = actual + '1';
+  }
+
+  (function(prefix, actual) {
+    it('has a prefix of ' + prefix + ' and a length of 16', function () {
+      expect(detectNetwork(actual)).to.equal('Switch'); 
+    });
+  })(cardGroup[i], actual)
+
+  actual = actual + '11';
+    (function(prefix, actual) {
+    it('has a prefix of ' + prefix + ' and a length of 18', function () {
+      expect(detectNetwork(actual)).to.equal('Switch'); 
+    });
+  })(cardGroup[i], actual)
+
+  actual = actual + '1'; 
+    (function(prefix, actual) {
+    it('has a prefix of ' + prefix + ' and a length of 19', function () {
+      expect(detectNetwork(actual)).to.equal('Switch'); 
+    });
+  })(cardGroup[i], actual)
+
+}
+
+}); 
+
+
+
+
+
+
+
+
+
+
+
+
+
